@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int min(int arr[], int size) {
+    if (size == 1)
+        return arr[0];
+    int m = min(arr, size - 1);
+    return (arr[size - 1] < m) ? arr[size - 1] : m;
+}
+
+int max(int arr[], int size) {
+    if (size == 1)
+        return arr[0];
+    int m = max(arr, size - 1);
+    return (arr[size - 1] > m) ? arr[size - 1] : m;
+}
+
+int countOdd(int arr[], int size) {
+    if (size == 0)
+        return 0;
+    return (arr[size - 1] % 2 != 0) + countOdd(arr, size - 1);
+}
+
+int countEven(int arr[], int size) {
+    if (size == 0)
+        return 0;
+    return (arr[size - 1] % 2 == 0) + countEven(arr, size - 1);
+}
+
+int main() {
+    int arr[] = {3, 7, 2, 8, 5, 9, 10};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Minimum value: %d\n", min(arr, size));
+    printf("Maximum value: %d\n", max(arr, size));
+    printf("Number of odd elements: %d\n", countOdd(arr, size));
+    printf("Number of even elements: %d\n", countEven(arr, size));
+
+    return 0;
+}
